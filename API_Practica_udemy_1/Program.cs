@@ -11,8 +11,11 @@ builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
     .AddEnvironmentVariables();
 
 builder.Services.AddControllers();
+
+var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(",") ?? Array.Empty<string>();
+
 builder.Services.AddCors(options => options.AddPolicy("AllowSpecificOrigins",
-                                            builder => builder.WithOrigins("http://localhost:4200", "http://localhost:5271", "https://localhost:7188")
+                                            builder => builder.WithOrigins(allowedOrigins)
                                                               .AllowAnyHeader()
                                                               .AllowAnyMethod()));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
