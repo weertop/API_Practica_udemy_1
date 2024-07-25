@@ -98,7 +98,7 @@ namespace API_Practica_udemy_1.Controllers
                 {
                     _context.Remove(tarjeta);
                     await _context.SaveChangesAsync();
-                    return Ok(new { message = "Tarjeta terminada en:" + tarjeta.Numero.Substring(15) + " Eliminada" });
+                    return Ok(new { message = "Terminada en: " + tarjeta.Numero.Substring(15) + " Eliminada" });
                 }
                 return NotFound();
             }
