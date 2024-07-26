@@ -70,10 +70,12 @@ jobs:
             [
               {
                 "name": "AllowedOrigins",
-                "value": "${{ secrets.ALLOWED_ORIGINS }}"
+                "value": "${{ vars.ALLOWED_ORIGINS }}"
               },
               {
                 "name": "DefaultConnection",
-                "value": "${{ vars.DEFAULT_CONNECTION }}"
+                "value": "${{ secrets.DEFAULT_CONNECTION }}"
               }
             ]
+        env: 
+          ACTIONS_STEP_DEBUG: True
