@@ -12,7 +12,11 @@ builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
 
 builder.Services.AddControllers();
 
-var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(",") ?? Array.Empty<string>();
+//obternerla como variable de entorno
+var allowedOrigins = Environment.GetEnvironmentVariable("AllowedOrigins")?.Split(",") ?? Array.Empty<string>();
+
+//obtener allowedorigins como variable de aplicacion
+//var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(",") ?? Array.Empty<string>();
 
 builder.Services.AddCors(options => options.AddPolicy("AllowSpecificOrigins",
                                             builder => builder.WithOrigins(allowedOrigins)
