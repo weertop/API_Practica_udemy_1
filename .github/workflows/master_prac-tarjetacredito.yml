@@ -52,6 +52,10 @@ jobs:
         with:
           name: .net-app
 
+      - name: List files in artifact
+        run: |
+          dir ./myapp
+
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -61,7 +65,7 @@ jobs:
       - name: App Settings Variable Substitution
         uses: microsoft/variable-substitution@v1
         with:
-          files: './myapp/appsettings.production.json'
+          files: './myapp/appsettings.json'
         env:
           DefaultConnection: ${{ secrets.DEFAULT_CONNECTION }}
           AllowedOrigins: ${{ vars.ALLOWED_ORIGINS }}
