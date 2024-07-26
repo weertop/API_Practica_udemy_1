@@ -60,3 +60,20 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CC2F953D996E438EBA8663CA7C8129E2 }}
+          
+      - name: Set appservice variables
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: 'prac-tarjetacredito'
+          slot-name: 'Production'
+          app-settings-json: |
+            [
+              {
+                "name": "AllowedOrigins",
+                "value": "${{ secrets.ALLOWED_ORIGINS }}"
+              },
+              {
+                "name": "DefaultConnection",
+                "value": "${{ vars.DEFAULT_CONNECTION }}"
+              }
+            ]
