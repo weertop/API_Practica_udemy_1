@@ -54,7 +54,7 @@ jobs:
 
       - name: List files in artifact
         run: |
-          dir ./myapp
+          dir
 
       - name: Azure Login
         uses: azure/login@v1
