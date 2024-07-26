@@ -61,9 +61,9 @@ jobs:
       - name: App Settings Variable Substitution
         uses: microsoft/variable-substitution@v1
         with:
-          files: '${{env.DOTNET_ROOT}}/myapp/appsettings.production.json'
+          files: './myapp/appsettings.production.json'
         env:
-          ConnectionStrings.DefaultConnection: ${{ secrets.DEFAULT_CONNECTION }}
+          DefaultConnection: ${{ secrets.DEFAULT_CONNECTION }}
           AllowedOrigins: ${{ vars.ALLOWED_ORIGINS }}
       
       - name: Deploy to Azure Web App
