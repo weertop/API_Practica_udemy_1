@@ -57,23 +57,14 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Set appservice variables
-        uses: azure/appservice-settings@v1
+      #substitute production appsettings entries to appsettings json file
+      - name: App Settings Variable Substitution
+        uses: microsoft/variable-substitution@v1
         with:
-          app-name: 'prac-tarjetacredito'
-          app-settings-json: |
-            [
-              {
-                "name": "AllowedOrigins",
-                "value": "${{ vars.ALLOWED_ORIGINS }}"
-              },
-              {
-                "name": "DefaultConnection",
-                "value": "${{ secrets.DEFAULT_CONNECTION }}"
-              }
-            ]
-        env: 
-          ACTIONS_STEP_DEBUG: True
+          files: '${{env.DOTNET_ROOT}}/myapp/appsettings.json'
+        env:
+          ConnectionStrings.DefaultConnection: ${{ secrets.DEFAULT_CONNECTION }}
+          AllowedOrigins: ${{ vars.ALLOWED_ORIGINS }}
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
