@@ -67,7 +67,7 @@ jobs:
         with:
           files: 'appsettings.production.json'
         env:
-          DefaultConnection: ${{ secrets.DEFAULT_CONNECTION }}
+          ConnectionStrings.DefaultConnection: ${{ secrets.DEFAULT_CONNECTION }}
           AllowedOrigins: ${{ vars.ALLOWED_ORIGINS }}
       
       - name: Deploy to Azure Web App
